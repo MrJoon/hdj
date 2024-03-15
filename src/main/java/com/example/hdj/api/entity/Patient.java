@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"visitList"})
 @Table(name = "patient", uniqueConstraints = {@UniqueConstraint(name = "ux_patient_001", columnNames = {"patient_id", "hospital_id"})})
 public class Patient implements Serializable {
 
@@ -44,6 +45,15 @@ public class Patient implements Serializable {
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
 
+    @Column(name = "is_use")
+    private Boolean isUse;
+
     @OneToMany(mappedBy = "patient")
     private List<Visit> visitList;
+
+
+    @PrePersist
+    void prePersist(){
+        isUse = true;
+    }
 }
