@@ -2,7 +2,7 @@ package com.example.hdj.api.patient;
 
 import com.example.hdj.api.dto.PatientReqDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.dㅎomain.Pageable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
