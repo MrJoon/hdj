@@ -44,8 +44,14 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Deprecated
     public List<PatientResDto.AllPatient> getPatientAll() {
         return Utils.mapList(patientRepository.findByIsUseTrue(), PatientResDto.AllPatient.class);
+    }
+
+    @Override
+    public List<PatientResDto.AllPatient> getPatientAll(PatientReqDto patientReqDto) {
+        return patientRepository.getPatientPageList(patientReqDto);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.hdj.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.io.Serial;
@@ -26,16 +25,7 @@ public class PatientResDto implements Serializable {
         private String genderCode;
         private String birthday;
         private String phoneNumber;
-        @JsonIgnore
-        private List<Visit> visitList;
         private LocalDateTime lastVisitAt;
-
-        public LocalDateTime getLastVisitAt() {
-            if (!visitList.isEmpty()) {
-                return visitList.get(visitList.size() - 1).visitAt;
-            }
-            return lastVisitAt;
-        }
     }
 
     @Getter

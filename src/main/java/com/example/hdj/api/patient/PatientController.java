@@ -36,8 +36,8 @@ public class PatientController {
      * @return
      */
     @GetMapping(value = "/api/v1/patient")
-    public ResponseEntity<?> getPatientAll(@PageableDefault(sort = {"patient_id"}, direction = Sort.Direction.DESC, size = 1) final Pageable pageable, PatientReqDto patientReqDto) {
-        return ResponseEntity.ok(patientService.getPatientAll());
+    public ResponseEntity<?> getPatientAll(@PageableDefault(sort = {"patientId"}, direction = Sort.Direction.DESC, size = 1) final Pageable pageable, PatientReqDto patientReqDto) {
+        return ResponseEntity.ok(patientService.getPatientAll(patientReqDto));
     }
 
     /**
