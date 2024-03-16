@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -39,4 +38,12 @@ public class Visit implements Serializable {
 
     @Column(name = "visit_status", length = 10, nullable = false)
     private String visitStatus;
+
+    @Column(name = "is_use")
+    private Boolean isUse;
+
+    @PrePersist
+    void prePersist() {
+        isUse = true;
+    }
 }
