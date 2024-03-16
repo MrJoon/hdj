@@ -13,17 +13,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "code_group")
+@Table(name = "codeGroup")
 public class CodeGroup implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 2227765434741785739L;
 
     @Id
-    @Column(name = "code_group", length = 10, nullable = false)
+    @Column(name = "codeGroup", length = 10, nullable = false)
     private String codeGroup;
 
-    @Column(name = "code_group_name", length = 10, nullable = false)
+    @Column(name = "codeGroupName", length = 10, nullable = false)
     private String codeGroupName;
 
 

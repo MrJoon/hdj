@@ -23,10 +23,10 @@ public class Code implements Serializable {
     @Column(name = "code", length = 10, nullable = false)
     private String code;
 
-    @JoinColumn(name = "code_group", referencedColumnName = "code_group", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT), nullable = false)
+    @JoinColumn(name = "codeGroup", referencedColumnName = "codeGroup", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT), nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private CodeGroup codeGroup;
 
-    @Column(name = "code_name", length = 10, nullable = false)
+    @Column(name = "codeName", length = 10, nullable = false)
     private String codeName;
 }

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "visit", uniqueConstraints = {@UniqueConstraint(name = "ux_visit_001", columnNames = {"visit_id", "hospital_id", "patient_id"})})
+@Table(name = "visit", uniqueConstraints = {@UniqueConstraint(name = "ux_visit_001", columnNames = {"visitId", "hospitalId", "patientId"})})
 public class Visit implements Serializable {
 
     @Serial
@@ -22,24 +22,24 @@ public class Visit implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "visit_id", nullable = false)
+    @Column(name = "visitId", nullable = false)
     private long visitId;
 
-    @JoinColumn(name = "hospital_id", referencedColumnName = "hospital_id", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT), nullable = false)
+    @JoinColumn(name = "hospitalId", referencedColumnName = "hospitalId", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT), nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Hospital hospital;
 
-    @JoinColumn(name = "patient_id", referencedColumnName = "patient_id", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT), nullable = false)
+    @JoinColumn(name = "patientId", referencedColumnName = "patientId", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT), nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Patient patient;
 
-    @Column(name = "visit_at", nullable = false)
+    @Column(name = "visitAt", nullable = false)
     private LocalDateTime visitAt;
 
-    @Column(name = "visit_status", length = 10, nullable = false)
+    @Column(name = "visitStatus", length = 10, nullable = false)
     private String visitStatus;
 
-    @Column(name = "is_use")
+    @Column(name = "isUse")
     private Boolean isUse;
 
     @PrePersist

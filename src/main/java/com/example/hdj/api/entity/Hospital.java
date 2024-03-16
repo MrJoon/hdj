@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"patientList", "visitList"})
 @Table(name = "hospital")
 public class Hospital implements Serializable {
 
@@ -22,13 +22,13 @@ public class Hospital implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "hospital_id", nullable = false)
+    @Column(name = "hospitalId", nullable = false)
     private long hospitalId;
 
-    @Column(name = "hospital_name", length = 45, nullable = false)
+    @Column(name = "hospitalName", length = 45, nullable = false)
     private String hospitalName;
 
-    @Column(name = "nursing_home_number", length = 20, nullable = false)
+    @Column(name = "nursingHomeNumber", length = 20, nullable = false)
     private String nursingHomeNumber;
 
     @Column(name = "director", length = 10, nullable = false)
