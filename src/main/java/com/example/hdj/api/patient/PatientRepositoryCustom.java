@@ -2,9 +2,9 @@ package com.example.hdj.api.patient;
 
 import com.example.hdj.api.dto.PatientReqDto;
 import com.example.hdj.api.dto.PatientResDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface PatientRepositoryCustom {
-    List<PatientResDto.AllPatient> getPatientPageList(PatientReqDto patientReqDto);
+    Page<PatientResDto.AllPatient> getPatientPageList(Pageable pageable, PatientReqDto patientReqDto);
 }

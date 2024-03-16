@@ -8,6 +8,8 @@ import com.example.hdj.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -50,8 +52,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<PatientResDto.AllPatient> getPatientAll(PatientReqDto patientReqDto) {
-        return patientRepository.getPatientPageList(patientReqDto);
+    public Page<PatientResDto.AllPatient> getPatientAll(Pageable pageable, PatientReqDto patientReqDto) {
+        return patientRepository.getPatientPageList(pageable, patientReqDto);
     }
 
     @Override

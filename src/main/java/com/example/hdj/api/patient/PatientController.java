@@ -2,7 +2,7 @@ package com.example.hdj.api.patient;
 
 import com.example.hdj.api.dto.PatientReqDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.dㅎomain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -36,8 +36,9 @@ public class PatientController {
      * @return
      */
     @GetMapping(value = "/api/v1/patient")
-    public ResponseEntity<?> getPatientAll(@PageableDefault(sort = {"patientId"}, direction = Sort.Direction.DESC, size = 1) final Pageable pageable, PatientReqDto patientReqDto) {
-        return ResponseEntity.ok(patientService.getPatientAll(patientReqDto));
+    public ResponseEntity<?> getPatientAll(@PageableDefault(sort = {"patientId"}, direction = Sort.Direction.DESC, size = 10, page = 1) final Pageable pageable
+            , PatientReqDto patientReqDto) {
+        return ResponseEntity.ok(patientService.getPatientAll(pageable, patientReqDto));
     }
 
     /**

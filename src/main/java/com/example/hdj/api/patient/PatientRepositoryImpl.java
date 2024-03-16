@@ -12,12 +12,13 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Repository
 @Slf4j
@@ -28,7 +29,7 @@ public class PatientRepositoryImpl extends HdjQueryDslRepositorySupport implemen
     }
 
     @Override
-    public List<PatientResDto.AllPatient> getPatientPageList(PatientReqDto patientReqDto) {
+    public Page<PatientResDto.AllPatient> getPatientPageList(Pageable pageable, PatientReqDto patientReqDto) {
         QPatient patient = QPatient.patient;
         QVisit visit = QVisit.visit;
 
@@ -38,7 +39,7 @@ public class PatientRepositoryImpl extends HdjQueryDslRepositorySupport implemen
                 .where(visit.patient.patientId.eq(patient.patientId))
                 .groupBy(visit.patient.patientId);
 
-        return from(patient)
+        JPQLQuery query = from(patient)
                 .select(Projections.constructor(
                         PatientResDto.AllPatient.class, patient.patientId
                         , patient.patientName, patient.patientNumber, patient.genderCode
@@ -48,8 +49,11 @@ public class PatientRepositoryImpl extends HdjQueryDslRepositorySupport implemen
                         patientName(patientReqDto)
                         , patientNumber(patientReqDto)
                         , birthday(patientReqDto)
-                ).fetch()
+                )
                 ;
+        QueryResults<PatientResDto.AllPatient> result = getQuerydsl().applyPagination(pageable, query).fetchResults();
+
+        return new PageImpl<>(result.getResults(), pageable, result.getTotal());
     }
 
 
